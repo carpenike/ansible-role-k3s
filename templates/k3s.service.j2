@@ -136,6 +136,41 @@ ExecStart={{ k3s_install_dir }}/k3s
         {% endfor %}
     {% endfor %}
 {% endif %}
+{% if k3s_kube_controller_manager_args is defined and k3s_kube_controller_manager_args is iterable %}
+    {% for arg in k3s_kube_controller_manager_args %}
+        {% for key, value in arg.items() %}
+            --kube-controller-manager-arg {{ key }}={{ value }}
+        {% endfor %}
+    {% endfor %}
+{% endif %}
+{% if k3s_kube_cloud_controller_manager_args is defined and k3s_kube_cloud_controller_manager_args is iterable %}
+    {% for arg in k3s_kube_cloud_controller_manager_args %}
+        {% for key, value in arg.items() %}
+            --kube-cloud-controller-manager-arg {{ key }}={{ value }}
+        {% endfor %}
+    {% endfor %}
+{% endif %}
+{% if k3s_kube_apiserver_args is defined and k3s_kube_apiserver_args is iterable %}
+    {% for arg in k3s_kube_apiserver_args %}
+        {% for key, value in arg.items() %}
+            --kube-apiserver-arg {{ key }}={{ value }}
+        {% endfor %}
+    {% endfor %}
+{% endif %}
+{% if k3s_kube_scheduler_args is defined and k3s_kube_scheduler_args is iterable %}
+    {% for arg in k3s_kube_scheduler_args %}
+        {% for key, value in arg.items() %}
+            --kube-scheduler-arg {{ key }}={{ value }}
+        {% endfor %}
+    {% endfor %}
+{% endif %}
+{% if k3s_kube_proxy_args is defined and k3s_kube_proxy_args is iterable %}
+    {% for arg in k3s_kube_proxy_args %}
+        {% for key, value in arg.items() %}
+            --kube-proxy-arg {{ key }}={{ value }}
+        {% endfor %}
+    {% endfor %}
+{% endif %}
 {% endfilter %}
 {% endfilter %}
 
